@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:pa/functions/functions.dart';
-import 'package:pa/global_acess.dart';
-import 'package:pa/modules/landing_page/widgets/change_color_button.dart';
-import 'package:pa/widgets/button.dart';
 import 'package:provider/provider.dart';
 
-class ScriptorPage extends StatelessWidget {
+import '../../../functions/functions.dart';
+import '../../../widgets/button.dart';
+import '../landing_page_controller.dart';
+import 'change_color_button.dart';
+
+class Configurations3 extends StatelessWidget {
   final double totalSizeOfAllWidgets = 650;
   @override
   Widget build(BuildContext context) {
-    GlobalAccess controllerGlobalAcess =
-        Provider.of<GlobalAccess>(context, listen: false);
+    LandingPageController controllerGlobalAcess =
+        Provider.of<LandingPageController>(context, listen: false);
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

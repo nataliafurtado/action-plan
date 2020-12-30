@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-        create: (_) => GlobalAccess(context),
+        create: (_) => GlobalAccess(),
         child: MaterialApp(
           navigatorKey: NavigationService.getNavigator(),
           title: 'NATy',

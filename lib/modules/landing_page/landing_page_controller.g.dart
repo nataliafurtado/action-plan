@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'global_acess.dart';
+part of 'landing_page_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,23 +8,9 @@ part of 'global_acess.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$GlobalAccess on GlobalAccessBase, Store {
-  final _$landingPagesAtom = Atom(name: 'GlobalAccessBase.landingPages');
-
-  @override
-  List<String> get landingPages {
-    _$landingPagesAtom.reportRead();
-    return super.landingPages;
-  }
-
-  @override
-  set landingPages(List<String> value) {
-    _$landingPagesAtom.reportWrite(value, super.landingPages, () {
-      super.landingPages = value;
-    });
-  }
-
-  final _$selectPageIndexAtom = Atom(name: 'GlobalAccessBase.selectPageIndex');
+mixin _$LandingPageController on LandingPageControllerBase, Store {
+  final _$selectPageIndexAtom =
+      Atom(name: 'LandingPageControllerBase.selectPageIndex');
 
   @override
   int get selectPageIndex {
@@ -39,35 +25,34 @@ mixin _$GlobalAccess on GlobalAccessBase, Store {
     });
   }
 
-  final _$GlobalAccessBaseActionController =
-      ActionController(name: 'GlobalAccessBase');
+  final _$LandingPageControllerBaseActionController =
+      ActionController(name: 'LandingPageControllerBase');
 
   @override
   dynamic nextPage() {
-    final _$actionInfo = _$GlobalAccessBaseActionController.startAction(
-        name: 'GlobalAccessBase.nextPage');
+    final _$actionInfo = _$LandingPageControllerBaseActionController
+        .startAction(name: 'LandingPageControllerBase.nextPage');
     try {
       return super.nextPage();
     } finally {
-      _$GlobalAccessBaseActionController.endAction(_$actionInfo);
+      _$LandingPageControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic lastPage() {
-    final _$actionInfo = _$GlobalAccessBaseActionController.startAction(
-        name: 'GlobalAccessBase.lastPage');
+    final _$actionInfo = _$LandingPageControllerBaseActionController
+        .startAction(name: 'LandingPageControllerBase.lastPage');
     try {
       return super.lastPage();
     } finally {
-      _$GlobalAccessBaseActionController.endAction(_$actionInfo);
+      _$LandingPageControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String toString() {
     return '''
-landingPages: ${landingPages},
 selectPageIndex: ${selectPageIndex}
     ''';
   }

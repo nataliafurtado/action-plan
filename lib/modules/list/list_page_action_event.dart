@@ -23,20 +23,20 @@ class ActionEventPage extends StatelessWidget {
               Container(padding: EdgeInsets.all(10), child: Text("Categoria")),
               TextFormField(
                 controller: controllerList.controllerCategoria,
-                decoration: Style.inputDecoration,
+                decoration: Style.inputDecoration(),
               ),
               Container(height: 10),
               Container(padding: EdgeInsets.all(10), child: Text("O que ?")),
               TextFormField(
                 controller: controllerList.controllerOque,
-                decoration: Style.inputDecoration,
+                decoration: Style.inputDecoration(),
               ),
               //
               Container(height: 10),
               Container(padding: EdgeInsets.all(10), child: Text("Como ?")),
               TextFormField(
                 controller: controllerList.controllerComo,
-                decoration: Style.inputDecoration,
+                decoration: Style.inputDecoration(),
                 maxLines: 5,
               ),
               //
@@ -44,7 +44,7 @@ class ActionEventPage extends StatelessWidget {
               Container(padding: EdgeInsets.all(10), child: Text("Prioridade")),
               TextFormField(
                 controller: controllerList.controllerPrioridade,
-                decoration: Style.inputDecoration,
+                decoration: Style.inputDecoration(),
               ),
               //
               Container(height: 20),
@@ -60,7 +60,7 @@ class ActionEventPage extends StatelessWidget {
               Container(padding: EdgeInsets.all(10), child: Text("Feeb Back")),
               TextFormField(
                 controller: controllerList.controllerFeedBack,
-                decoration: Style.inputDecoration,
+                decoration: Style.inputDecoration(),
                 maxLines: 3,
               ),
               //
@@ -68,7 +68,7 @@ class ActionEventPage extends StatelessWidget {
               Container(padding: EdgeInsets.all(10), child: Text("Obs")),
               TextFormField(
                 controller: controllerList.controllerObs,
-                decoration: Style.inputDecoration,
+                decoration: Style.inputDecoration(),
                 maxLines: 3,
               ),
               Container(height: 40),

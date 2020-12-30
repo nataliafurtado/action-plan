@@ -37,29 +37,32 @@ class Style {
         color: Colors.white,
       );
 
-  static InputDecoration get inputDecoration => InputDecoration(
-        errorText: null,
-        errorBorder: OutlineInputBorder(
+  static InputDecoration inputDecoration({String hint}) {
+    return InputDecoration(
+      errorText: null,
+      hintText: hint,
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.red,
+          width: 1.0,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Style.primaryColor,
+          width: 1.0,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.red,
+            color: Style.secondaryColor,
             width: 1.0,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Style.primaryColor,
-            width: 1.0,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Style.secondaryColor,
-              width: 1.0,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-      );
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+    );
+  }
 
   static Color get primaryColor => Colors.indigo;
   static Color get secondaryColor => Colors.lightGreen;

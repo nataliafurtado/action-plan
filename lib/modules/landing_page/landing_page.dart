@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pa/modules/landing_page/widgets/1_crie_uma_planilha.dart';
-import 'package:pa/modules/landing_page/widgets/2_scriptor.dart';
-import 'package:pa/modules/landing_page/widgets/id_page.dart';
 import 'package:provider/provider.dart';
 
-import '../../assets/style.dart';
 import '../../global_acess.dart';
+import 'landing_page_controller.dart';
+import 'widgets/1_init.dart';
+import 'widgets/2_configurations.dart';
+import 'widgets/3_configurations.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -16,8 +16,8 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
-    GlobalAccess controllerGlobalAcess =
-        Provider.of<GlobalAccess>(context, listen: false);
+    LandingPageController controllerGlobalAcess =
+        Provider.of<LandingPageController>(context, listen: false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       controllerGlobalAcess.checkIfAlreadyHasIDSetted(context);
@@ -30,13 +30,13 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  Widget showPage(GlobalAccess controllerGlobalAcess) {
+  Widget showPage(LandingPageController controllerGlobalAcess) {
     if (controllerGlobalAcess.selectPageIndex == 0) {
-      return CrieUmaPlanilha();
+      return InitPage();
     } else if (controllerGlobalAcess.selectPageIndex == 1) {
-      return ScriptorPage();
+      return Configurations2();
     } else if (controllerGlobalAcess.selectPageIndex == 2) {
-      return IdPage();
+      return Configurations3();
     } else {
       return null;
     }

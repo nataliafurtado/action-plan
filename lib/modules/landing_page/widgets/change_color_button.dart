@@ -25,8 +25,8 @@ class _ChangeColorButtonState extends State<ChangeColorButton> {
   }
 
   String ee = "function doGet(e){"
-      "try{"
-      "var sheet = SpreadsheetApp.getActiveSheet();"
+      "try{\n"
+      "var sheet = SpreadsheetAp\np.ge\ntAc\ntiveSheet();"
       "var lastRow = sheet.getLastRow();"
       "var lastColum = sheet.getLastColumn();"
       "var originalData = sheet.getRange(2,1,lastRow-1,lastColum).getValues();"
