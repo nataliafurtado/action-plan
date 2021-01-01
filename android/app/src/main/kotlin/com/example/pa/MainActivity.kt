@@ -1,4 +1,4 @@
-package com.example.pa
+package com.pa.trava
 
 import io.flutter.embedding.android.FlutterActivity
 
