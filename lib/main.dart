@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         create: (_) => GlobalAccess(),
         child: MaterialApp(
           navigatorKey: NavigationService.getNavigator(),
-          title: 'NATy',
+          title: "ACTION PLAN",
           debugShowCheckedModeBanner: false,
           initialRoute: '/',
           onGenerateRoute: RouteGenerator.generateRoute,

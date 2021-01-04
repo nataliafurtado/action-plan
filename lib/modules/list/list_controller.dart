@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +24,10 @@ abstract class ListControllerBase with Store, ChangeNotifier {
   List<ActionEvent> actions = [];
 
   List<ActionEvent> actionsNotFiltered = [];
+  @observable
+  List<String> responsables = [];
+
+  String selectedResponsable = '';
 
   List<String> status = [
     'EM PROGRESSO',
@@ -41,7 +47,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
   TextEditingController controllerCategoria = TextEditingController();
   TextEditingController controllerOque = TextEditingController();
   TextEditingController controllerComo = TextEditingController();
-  TextEditingController controllerPrioridade = TextEditingController();
+
   TextEditingController controllerFeedBack = TextEditingController();
   TextEditingController controllerObs = TextEditingController();
   String prazo = '';
@@ -55,6 +61,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     actionsNotFiltered = actionList;
+    filterResponsableColumnValues(actionList);
     if (prefs.containsKey(Constants.filtro)) {
       filterStatusActions(prefs.getString(Constants.filtro));
       selectedFilterStatus = prefs.getString(Constants.filtro);
@@ -62,6 +69,20 @@ abstract class ListControllerBase with Store, ChangeNotifier {
       actions = actionList;
     }
     Navigator.pop(context);
+  }
+
+  @action
+  filterResponsableColumnValues(List<ActionEvent> list) {
+    List<String> responsablesList = [];
+    for (var i = 0; i < list.length; i++) {
+      responsablesList.add(list[i].quem);
+    }
+    responsablesList = responsablesList.toSet().toList();
+    if (!responsablesList.contains("")) {
+      responsablesList.add("");
+    }
+    responsables = responsablesList;
+    log(responsables.toString());
   }
 
   saveActionEvent() async {
@@ -111,6 +132,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
     data = DateTime.now().toIso8601String();
     selectedStatus = "EM PROGRESSO";
     isToSave = true;
+    selectedResponsable = "";
     Navigator.pushNamed(context, '/action-event-page', arguments: this);
   }
 
@@ -119,7 +141,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
     controllerCategoria.text = actions[index].categoria;
     controllerOque.text = actions[index].oQue;
     controllerComo.text = actions[index].como;
-    controllerPrioridade.text = actions[index].prioridade;
+    selectedResponsable = actions[index].quem;
     controllerFeedBack.text = actions[index].feedBack;
     controllerObs.text = actions[index].obs;
     prazo = actions[index].prazo;
@@ -134,7 +156,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
         categoria: controllerCategoria.text,
         oQue: controllerOque.text,
         como: controllerComo.text,
-        prioridade: controllerPrioridade.text,
+        quem: selectedResponsable,
         prazo: formatData(prazo, false),
         status: selectedStatus,
         feedBack: controllerFeedBack.text,
@@ -148,7 +170,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
         categoria: controllerCategoria.text,
         oQue: controllerOque.text,
         como: controllerComo.text,
-        prioridade: controllerPrioridade.text,
+        quem: selectedResponsable,
         prazo: formatData(prazo, false),
         status: selectedStatus,
         feedBack: controllerFeedBack.text,

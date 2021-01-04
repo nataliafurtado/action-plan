@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pa/generated/l10n.dart';
 import 'package:pa/widgets/button.dart';
 
 class ChangeColorButton extends StatefulWidget {
@@ -13,7 +14,8 @@ class _ChangeColorButtonState extends State<ChangeColorButton> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(24),
-      child: Button(isCopied ? "COPIADO" : "COPIAR", () {
+      child:
+          Button(isCopied ? S.of(context).COPIADO : S.of(context).COPIAR, () {
         Clipboard.setData(
           ClipboardData(text: ee),
         );

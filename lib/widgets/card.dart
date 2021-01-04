@@ -56,14 +56,30 @@ class CardAction extends StatelessWidget {
 
   Widget oque() {
     return Container(
-      padding: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 5),
-      alignment: Alignment.centerLeft,
-      child: Text(
-        action.oQue,
-        style: Style.bold,
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            action.oQue,
+            style: Style.bold,
+          ),
+          // Text(action.quem.toUpperCase()),
+        ],
       ),
     );
   }
+
+  // Widget oque() {
+  //   return Container(
+  //     padding: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 5),
+  //     alignment: Alignment.centerLeft,
+  //     child: Text(
+  //       action.oQue,
+  //       style: Style.bold,
+  //     ),
+  //   );
+  // }
 
   Widget como() {
     return Container(

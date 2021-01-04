@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-import '../../global_acess.dart';
 import 'landing_page_controller.dart';
 import 'widgets/1_init.dart';
 import 'widgets/2_configurations.dart';
-import 'widgets/3_configurations.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -35,8 +33,6 @@ class _LandingPageState extends State<LandingPage> {
       return InitPage();
     } else if (controllerGlobalAcess.selectPageIndex == 1) {
       return Configurations2();
-    } else if (controllerGlobalAcess.selectPageIndex == 2) {
-      return Configurations3();
     } else {
       return null;
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pa/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 import '../../../assets/style.dart';
@@ -19,7 +20,7 @@ class InitPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(height: 100),
-            configurationsText(),
+            configurationsText(context),
             Container(height: 30),
             Container(child: Image.asset('lib/assets/images/page00.png')),
             Container(
@@ -27,7 +28,7 @@ class InitPage extends StatelessWidget {
                     context, totalSizeOfAllWidgets)),
             Container(
               padding: EdgeInsets.all(24),
-              child: Button("Iniciar configurações", () {
+              child: Button(S.of(context).INICIAR_CONFIG, () {
                 controllerGlobalAcess.nextPage();
               }),
             ),
@@ -37,7 +38,7 @@ class InitPage extends StatelessWidget {
     );
   }
 
-  Widget configurationsText() {
+  Widget configurationsText(context) {
     return Container(
       height: 300,
       child: Column(
@@ -48,28 +49,28 @@ class InitPage extends StatelessWidget {
             width: double.infinity,
             alignment: Alignment.center,
             child: Text(
-              "Para configurar é necessario:",
+              S.of(context).PARA_CONFIGURAR_E_NEC,
               style: Style.bold.copyWith(fontSize: 23),
             ),
           ),
           Text(
-            " - É preciso uma conta no google",
+            S.of(context).E_PRECISO_UMA,
             style: Style.bold.copyWith(fontSize: 17),
           ),
           Text(
-            " - Criar uma planilha vazia no google drive",
+            S.of(context).CRIAR_UMA_PLANILHA,
             style: Style.bold.copyWith(fontSize: 17),
           ),
           Text(
-            " - Ir na parte de Editors de Script da planilha e colar um script",
+            S.of(context).IR_NA_PARTE,
             style: Style.bold.copyWith(fontSize: 17),
           ),
           Text(
-            " - Implantar o scrip",
+            S.of(context).IMPALNTAR_O_SCRIP,
             style: Style.bold.copyWith(fontSize: 17),
           ),
           Text(
-            " - Liberar acesso da planilhas para outros aplicativos",
+            S.of(context).LIBERAR_O_ACESSO,
             style: Style.bold.copyWith(fontSize: 17),
           ),
         ],

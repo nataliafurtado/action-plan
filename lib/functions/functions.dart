@@ -23,11 +23,11 @@ Color statusColors(String status) {
 
 Color prazoColors(DateTime date) {
   if (date.isBefore(DateTime.now())) {
-    return Colors.red;
+    return Style.atrasada;
   } else if (date.isAfter(DateTime.now())) {
-    return Colors.greenAccent;
+    return Style.completa;
   } else {
-    return Colors.red;
+    return Style.atrasada;
   }
 }
 

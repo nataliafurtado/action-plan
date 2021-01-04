@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pa/assets/style.dart';
 import 'package:provider/provider.dart';
 
 import '../functions/functions.dart';
@@ -35,10 +36,14 @@ class _DropDownStatusState extends State<DropDownStatus> {
               child: Container(
                   width: flexWidthSpacing(context, 1) - 100,
                   alignment: Alignment.center,
-                  child: Text(val)),
+                  child: Text(
+                    val,
+                    style: Style.bold,
+                  )),
             );
           }).toList(),
           value: controllerList.selectedStatus,
+          underline: Container(color: Colors.transparent),
           onChanged: (newVal) {
             controllerList.selectedStatus = newVal;
             this.setState(() {});

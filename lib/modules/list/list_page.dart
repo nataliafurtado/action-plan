@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pa/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 import '../../assets/style.dart';
-import '../../functions/functions.dart';
 import '../../widgets/card.dart';
 import '../../widgets/filters.dart';
 import 'list_controller.dart';
@@ -27,7 +27,6 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: const Color(0XFFECEFF0),
         backgroundColor: Style.iceBackground,
         body: Observer(builder: (_) {
           return Column(
@@ -35,7 +34,6 @@ class _ListPageState extends State<ListPage> {
               Container(height: 56),
               Filters(),
               Expanded(
-                // height: flexHeightSpacing(context, 1) - 136,
                 child: RefreshIndicator(
                   onRefresh: () {
                     return controllerList.loadData();
@@ -70,7 +68,7 @@ class _ListPageState extends State<ListPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "NOVA AÇÂO",
+              S.of(context).NOVA_ACAO,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),

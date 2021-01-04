@@ -46,7 +46,7 @@ class Style {
           color: Colors.red,
           width: 1.0,
         ),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:pa/generated/l10n.dart';
 import 'package:pa/global_acess.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,7 @@ class Configurations2 extends StatelessWidget {
           children: [
             Container(height: 120),
             Text(
-              "Instruções de instalação",
+              S.of(context).INTRUCOES_DE_INSTALACAO,
               style: Style.bold.copyWith(fontSize: 18),
             ),
             Container(height: 20),
@@ -33,59 +34,59 @@ class Configurations2 extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.centerLeft,
               child: Text(
-                "Utilize um navegador web para realizar as configuraçães.",
+                S.of(context).UTILIZE_UM_NAVEGADOR_WEB,
               ),
             ),
             Container(
               width: double.infinity,
               alignment: Alignment.centerLeft,
               child: Text(
-                "Não é possivel fazer pelo aplicativo do google drive.",
+                S.of(context).NAO_E_POSSIVEL_FAZER,
               ),
             ),
             ImageTextWidget(
-              text: "1. Criar uma planilha vazia no google drive",
+              text: S.of(context).UM,
               image: 'lib/assets/images/page1.png',
             ),
 
             ImageTextWidget(
-              text: "2. Ir na parte de <> Editor de Script",
+              text: S.of(context).DOIS,
               image: 'lib/assets/images/page2.png',
             ),
 
             ImageTextWidget(
-              text: "3. Apagar o scrip inicial padrão",
+              text: S.of(context).TRES,
               image: 'lib/assets/images/page3.png',
             ),
 
             //
             ImageTextWidget(
-              text: "4. Colar o script fornecido abaixo",
+              text: S.of(context).QUATRO,
               image: 'lib/assets/images/page4.png',
             ),
 
             Container(height: 10),
             Container(
               padding: EdgeInsets.all(24),
-              child: Button("Copiar script", () {
+              child: Button(S.of(context).COPIAR_SCRIPT, () {
                 sendw();
               }),
             ),
             Text(
-              "* Não esqueça de salvar depois de colar",
+              S.of(context).NAO_ESQUECA_DE_SALVAR,
               style: Style.bold.copyWith(fontSize: 18),
             ),
             ImageTextWidget(
-              text: "5. Em seguida pressione em - Nova implantação",
+              text: S.of(context).CINCO,
               image: 'lib/assets/images/page5.png',
             ),
             ImageTextWidget(
-              text: "6. Em seguida pressione em - App da Web",
+              text: S.of(context).SEIS,
               image: 'lib/assets/images/page6.png',
             ),
 
             ImageTextWidget(
-              text: "6. Em seguida pressione em - Implantar",
+              text: S.of(context).SETE,
               image: 'lib/assets/images/page7.png',
             ),
 
@@ -93,12 +94,12 @@ class Configurations2 extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.centerLeft,
               child: Text(
-                "* Selecione - Qualquer pessoa",
+                S.of(context).SELECIONE_QUALQUER_PESSOA,
               ),
             ),
 
             ImageTextWidget(
-              text: "7. Em seguida pressione em -Avançado",
+              text: S.of(context).OITO,
               image: 'lib/assets/images/page8.png',
             ),
 
@@ -106,35 +107,35 @@ class Configurations2 extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.centerLeft,
               child: Text(
-                "* Você mesmo esta criando um APP",
+                S.of(context).VOCE_MESMO_ESTA,
               ),
             ),
             Container(
               width: double.infinity,
               alignment: Alignment.centerLeft,
               child: Text(
-                "** E está permitindo que seu recém-criado app acesse sua planilha",
+                S.of(context).E_ESTA_PERMITINDO,
               ),
             ),
 
             ImageTextWidget(
-              text: "8. Em seguida pressione em -Acessar projeto sem título",
+              text: S.of(context).NOVE,
               image: 'lib/assets/images/page9.png',
             ),
 
             ImageTextWidget(
-              text: "9. Em seguida pressione em - Permitir",
+              text: S.of(context).DEZ,
               image: 'lib/assets/images/page10.png',
             ),
 
             ImageTextWidget(
-              text: "10. Copie a URL do APP da Web",
+              text: S.of(context).ONZE,
               image: 'lib/assets/images/page11.png',
             ),
             Container(height: 30),
 
             Text(
-              "11. Cole a URL no campo abaixo",
+              S.of(context).DOZE,
               style: Style.bold.copyWith(fontSize: 18),
             ),
             Container(height: 30),
@@ -143,17 +144,17 @@ class Configurations2 extends StatelessWidget {
               child: TextFormField(
                 controller: controllerGlobalAcess.controllerIdSheet,
                 decoration:
-                    Style.inputDecoration(hint: "Cole aqui a URL copiada "),
+                    Style.inputDecoration(hint: S.of(context).COLE_AQUI_A_URL),
                 validator: (String text) {
                   if (text.isEmpty) {
-                    return "O campo é obrigatório";
+                    return S.of(context).O_CAMPO_E_OBRIGATORIO;
                   }
                   return null;
                 },
               ),
             ),
             Container(height: 50),
-            Button(" Ir para o plano de ação", () {
+            Button(S.of(context).IR_PARA_O_PLANO_DE_ACAO, () {
               if (_formKey.currentState.validate()) {
                 controllerLandingPAge.configureAndGoToList(context);
               }

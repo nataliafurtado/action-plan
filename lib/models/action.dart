@@ -3,7 +3,7 @@ class ActionEvent {
   String categoria;
   String oQue;
   String como;
-  String prioridade;
+  String quem;
   String prazo;
   String status;
   String feedBack;
@@ -16,7 +16,7 @@ class ActionEvent {
     this.categoria,
     this.oQue,
     this.como,
-    this.prioridade,
+    this.quem,
     this.prazo,
     this.status,
     this.feedBack,
@@ -31,7 +31,7 @@ class ActionEvent {
       categoria: "${json[1]}",
       oQue: "${json[2]}",
       como: "${json[3]}",
-      prioridade: "${json[4]}",
+      quem: "${json[4]}",
       prazo: "${json[5]}",
       status: "${json[6]}",
       feedBack: "${json[7]}",
@@ -46,7 +46,7 @@ class ActionEvent {
         'categoria': categoria ?? "",
         'oQue': oQue ?? "",
         "como": como ?? "",
-        'prioridade': prioridade ?? "",
+        'quem': quem ?? "",
         'prazo': prazo ?? "",
         'status': status ?? "",
         'feedBack': feedBack ?? "",

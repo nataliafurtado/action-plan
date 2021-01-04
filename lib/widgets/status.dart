@@ -15,7 +15,6 @@ class ActionStatus extends StatelessWidget {
       height: 30,
       width: flexWidthSpacing(context, 1),
       decoration: BoxDecoration(
-        // borderRadius: BorderRadius.all(Radius.circular(10)),
         color: statusColors(text),
       ),
       child: Center(

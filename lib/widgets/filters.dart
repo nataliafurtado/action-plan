@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pa/generated/l10n.dart';
 import 'package:pa/modules/list/list_controller.dart';
 import 'package:pa/widgets/chips_filter.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,7 @@ class _FiltersState extends State<Filters> {
                         return index == controllerList.status.length
                             ? ListTile(
                                 leading: new Icon(Icons.not_interested),
-                                title: new Text("Limpar filtro"),
+                                title: new Text(S.of(context).TODAS),
                                 onTap: () {
                                   Navigator.pop(context);
                                   controllerList.filterStatusCleanFilter();

@@ -24,6 +24,21 @@ mixin _$ListController on ListControllerBase, Store {
     });
   }
 
+  final _$responsablesAtom = Atom(name: 'ListControllerBase.responsables');
+
+  @override
+  List<String> get responsables {
+    _$responsablesAtom.reportRead();
+    return super.responsables;
+  }
+
+  @override
+  set responsables(List<String> value) {
+    _$responsablesAtom.reportWrite(value, super.responsables, () {
+      super.responsables = value;
+    });
+  }
+
   final _$selectedFilterStatusAtom =
       Atom(name: 'ListControllerBase.selectedFilterStatus');
 
@@ -52,6 +67,17 @@ mixin _$ListController on ListControllerBase, Store {
       ActionController(name: 'ListControllerBase');
 
   @override
+  dynamic filterResponsableColumnValues(List<ActionEvent> list) {
+    final _$actionInfo = _$ListControllerBaseActionController.startAction(
+        name: 'ListControllerBase.filterResponsableColumnValues');
+    try {
+      return super.filterResponsableColumnValues(list);
+    } finally {
+      _$ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic filterStatusActions(String statusPassed) {
     final _$actionInfo = _$ListControllerBaseActionController.startAction(
         name: 'ListControllerBase.filterStatusActions');
@@ -77,6 +103,7 @@ mixin _$ListController on ListControllerBase, Store {
   String toString() {
     return '''
 actions: ${actions},
+responsables: ${responsables},
 selectedFilterStatus: ${selectedFilterStatus}
     ''';
   }

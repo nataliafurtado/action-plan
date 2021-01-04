@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pa/assets/style.dart';
+import 'package:pa/generated/l10n.dart';
 
 import 'package:pa/modules/list/list_controller.dart';
 import 'package:pa/widgets/button.dart';
 import 'package:pa/widgets/date_picker_prazo.dart';
+import 'package:pa/widgets/drop_down_responsable.dart';
 import 'package:pa/widgets/drop_down_status.dart';
 import 'package:provider/provider.dart';
 
@@ -20,20 +22,25 @@ class ActionEventPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(height: 50),
-              Container(padding: EdgeInsets.all(10), child: Text("Categoria")),
+              Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(S.of(context).CATEGORIA)),
               TextFormField(
                 controller: controllerList.controllerCategoria,
                 decoration: Style.inputDecoration(),
               ),
               Container(height: 10),
-              Container(padding: EdgeInsets.all(10), child: Text("O que ?")),
+              Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(S.of(context).O_QUE)),
               TextFormField(
                 controller: controllerList.controllerOque,
                 decoration: Style.inputDecoration(),
               ),
               //
               Container(height: 10),
-              Container(padding: EdgeInsets.all(10), child: Text("Como ?")),
+              Container(
+                  padding: EdgeInsets.all(10), child: Text(S.of(context).COMO)),
               TextFormField(
                 controller: controllerList.controllerComo,
                 decoration: Style.inputDecoration(),
@@ -41,23 +48,27 @@ class ActionEventPage extends StatelessWidget {
               ),
               //
               Container(height: 10),
-              Container(padding: EdgeInsets.all(10), child: Text("Prioridade")),
-              TextFormField(
-                controller: controllerList.controllerPrioridade,
-                decoration: Style.inputDecoration(),
-              ),
+              Container(
+                  padding: EdgeInsets.all(10), child: Text(S.of(context).QUEM)),
+              DropDownResponsable(),
               //
               Container(height: 20),
-              Container(padding: EdgeInsets.all(10), child: Text("Prazo")),
+              Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(S.of(context).PRAZO)),
               //
               DatePickerPrazo(),
               //
               Container(height: 10),
-              Container(padding: EdgeInsets.all(10), child: Text("Status")),
+              Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(S.of(context).SATUS)),
               DropDownStatus(),
               //
               Container(height: 10),
-              Container(padding: EdgeInsets.all(10), child: Text("Feeb Back")),
+              Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(S.of(context).FEED_BACK)),
               TextFormField(
                 controller: controllerList.controllerFeedBack,
                 decoration: Style.inputDecoration(),
@@ -65,14 +76,15 @@ class ActionEventPage extends StatelessWidget {
               ),
               //
               Container(height: 10),
-              Container(padding: EdgeInsets.all(10), child: Text("Obs")),
+              Container(
+                  padding: EdgeInsets.all(10), child: Text(S.of(context).OBS)),
               TextFormField(
                 controller: controllerList.controllerObs,
                 decoration: Style.inputDecoration(),
                 maxLines: 3,
               ),
               Container(height: 40),
-              Button("SALVAR", () {
+              Button(S.of(context).SALVAR, () {
                 controllerList.saveActionEvent();
               }),
               Container(height: 40),

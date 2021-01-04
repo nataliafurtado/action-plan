@@ -1,16 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:pa/assets/constants.dart';
-import 'package:pa/functions/functions.dart';
-import 'package:pa/global_acess.dart';
-import 'package:pa/models/action.dart';
-import 'package:pa/modules/list/list_repository.dart';
-import 'package:pa/widgets/dialog_circular_progress_indicator.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:mobx/mobx.dart';
+import '../../assets/constants.dart';
+import '../../functions/functions.dart';
+import '../../global_acess.dart';
+import '../../models/action.dart';
+import '../../widgets/dialog_circular_progress_indicator.dart';
+import '../list/list_repository.dart';
 
 part 'landing_page_controller.g.dart';
 
