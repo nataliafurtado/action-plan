@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pa/generated/l10n.dart';
+import 'package:pa/modules/list/widget/new_action_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../assets/style.dart';
+import '../../generated/l10n.dart';
+import '../../widgets/button.dart';
 import '../../widgets/card.dart';
-import '../../widgets/filters.dart';
+import 'filter/filters.dart';
 import 'list_controller.dart';
 
 class ListPage extends StatefulWidget {
@@ -31,8 +33,25 @@ class _ListPageState extends State<ListPage> {
         body: Observer(builder: (_) {
           return Column(
             children: [
-              Container(height: 56),
+              Container(height: 20),
+              //
+              Container(
+                height: 40,
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  width: 60,
+                  padding: EdgeInsets.only(right: 10),
+                  alignment: Alignment.bottomRight,
+                  child: Icon(
+                    Icons.settings,
+                    color: Style.primaryColor,
+                  ),
+                ),
+              ),
+              //
               Filters(),
+
+              //
               Expanded(
                 child: RefreshIndicator(
                   onRefresh: () {
@@ -43,8 +62,21 @@ class _ListPageState extends State<ListPage> {
                       itemCount: controllerList.actions.length + 1,
                       itemBuilder: (ctx, index) {
                         return index == controllerList.actions.length
-                            ? newAction()
-                            : CardAction(controllerList.actions[index], index);
+                            ? NewActionButton()
+                            : Dismissible(
+                                dismissThresholds: {
+                                    DismissDirection.endToStart: 0.9
+                                  },
+                                background: backGroudTrash(),
+                                direction: DismissDirection.endToStart,
+                                key: Key(index.toString()),
+                                onDismissed: (direction) {
+                                  controllerList.deleteactionEvent(index);
+                                },
+                                child: CardAction(
+                                    controllerList.actions[index], index),
+                                confirmDismiss: dialogShouldDismiss,
+                                movementDuration: Duration(seconds: 1));
                       }),
                 ),
               ),
@@ -54,29 +86,45 @@ class _ListPageState extends State<ListPage> {
         }));
   }
 
-  Widget newAction() {
-    return InkWell(
-      onTap: () {
-        controllerList.goToNewActionEventPage();
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 15, left: 15, right: 15),
-        padding: EdgeInsets.all(15),
-        height: 60,
-        color: Style.primaryColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              S.of(context).NOVA_ACAO,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            Container(width: 30),
-            Icon(Icons.add_circle, color: Colors.white)
-          ],
-        ),
+  Container backGroudTrash() {
+    return Container(
+      color: Style.atrasada,
+      alignment: Alignment(0.9, 0),
+      child: Icon(
+        Icons.delete,
+        color: Colors.white,
       ),
     );
+  }
+
+  Future<bool> dialogShouldDismiss(DismissDirection direction) async {
+    return await showDialog(
+        context: context,
+        child: AlertDialog(
+          content: Container(
+            height: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  S.of(context).DESEJA_EXCLUIR,
+                  style: Style.bold,
+                ),
+                Container(height: 20),
+                Button(S.of(context).EXCLUIR, () {
+                  Navigator.of(context).pop(true);
+                }),
+                Container(height: 20),
+                Button(S.of(context).CANCELAR, () {
+                  Navigator.of(context).pop(false);
+                }),
+                Container(height: 20),
+                Text(
+                  "*Esta ação não pode ser desfeita ",
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }

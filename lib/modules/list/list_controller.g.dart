@@ -39,6 +39,22 @@ mixin _$ListController on ListControllerBase, Store {
     });
   }
 
+  final _$isToShowResponsableAtom =
+      Atom(name: 'ListControllerBase.isToShowResponsable');
+
+  @override
+  bool get isToShowResponsable {
+    _$isToShowResponsableAtom.reportRead();
+    return super.isToShowResponsable;
+  }
+
+  @override
+  set isToShowResponsable(bool value) {
+    _$isToShowResponsableAtom.reportWrite(value, super.isToShowResponsable, () {
+      super.isToShowResponsable = value;
+    });
+  }
+
   final _$selectedFilterStatusAtom =
       Atom(name: 'ListControllerBase.selectedFilterStatus');
 
@@ -63,15 +79,35 @@ mixin _$ListController on ListControllerBase, Store {
     return _$loadDataAsyncAction.run(() => super.loadData());
   }
 
+  final _$apllySavedFIltersAsyncAction =
+      AsyncAction('ListControllerBase.apllySavedFIlters');
+
+  @override
+  Future apllySavedFIlters(dynamic actionList) {
+    return _$apllySavedFIltersAsyncAction
+        .run(() => super.apllySavedFIlters(actionList));
+  }
+
   final _$ListControllerBaseActionController =
       ActionController(name: 'ListControllerBase');
 
   @override
-  dynamic filterResponsableColumnValues(List<ActionEvent> list) {
+  dynamic separetaResponsableValues(List<ActionEvent> list) {
     final _$actionInfo = _$ListControllerBaseActionController.startAction(
-        name: 'ListControllerBase.filterResponsableColumnValues');
+        name: 'ListControllerBase.separetaResponsableValues');
     try {
-      return super.filterResponsableColumnValues(list);
+      return super.separetaResponsableValues(list);
+    } finally {
+      _$ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic filter() {
+    final _$actionInfo = _$ListControllerBaseActionController.startAction(
+        name: 'ListControllerBase.filter');
+    try {
+      return super.filter();
     } finally {
       _$ListControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -89,6 +125,17 @@ mixin _$ListController on ListControllerBase, Store {
   }
 
   @override
+  dynamic filterResponsableActions(String responsablePassed) {
+    final _$actionInfo = _$ListControllerBaseActionController.startAction(
+        name: 'ListControllerBase.filterResponsableActions');
+    try {
+      return super.filterResponsableActions(responsablePassed);
+    } finally {
+      _$ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic filterStatusCleanFilter() {
     final _$actionInfo = _$ListControllerBaseActionController.startAction(
         name: 'ListControllerBase.filterStatusCleanFilter');
@@ -100,10 +147,33 @@ mixin _$ListController on ListControllerBase, Store {
   }
 
   @override
+  dynamic filterResponsableCleanFilter() {
+    final _$actionInfo = _$ListControllerBaseActionController.startAction(
+        name: 'ListControllerBase.filterResponsableCleanFilter');
+    try {
+      return super.filterResponsableCleanFilter();
+    } finally {
+      _$ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeShowResponsableInCard() {
+    final _$actionInfo = _$ListControllerBaseActionController.startAction(
+        name: 'ListControllerBase.changeShowResponsableInCard');
+    try {
+      return super.changeShowResponsableInCard();
+    } finally {
+      _$ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 actions: ${actions},
 responsables: ${responsables},
+isToShowResponsable: ${isToShowResponsable},
 selectedFilterStatus: ${selectedFilterStatus}
     ''';
   }

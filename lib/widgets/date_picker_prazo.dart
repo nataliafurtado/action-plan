@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pa/assets/style.dart';
 import 'package:pa/functions/functions.dart';
 import 'package:pa/modules/list/list_controller.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class _DatePickerPrazoState extends State<DatePickerPrazo> {
         alignment: Alignment.center,
         child: Text(
           formatData(controllerList.prazo, true),
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: Style.white,
         ),
       ),
     );

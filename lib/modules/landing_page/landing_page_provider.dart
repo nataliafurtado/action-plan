@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pa/global_acess.dart';
-import 'package:pa/modules/landing_page/landing_page.dart';
-import 'package:pa/modules/landing_page/landing_page_controller.dart';
 import 'package:provider/provider.dart';
+
+import 'landing_page.dart';
+import 'landing_page_controller.dart';
 
 class LandingPageProvider extends StatelessWidget {
   @override

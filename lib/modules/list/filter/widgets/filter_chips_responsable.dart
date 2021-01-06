@@ -4,39 +4,18 @@ import 'package:pa/modules/list/list_controller.dart';
 import 'package:pa/widgets/chips_filter.dart';
 import 'package:provider/provider.dart';
 
-class Filters extends StatefulWidget {
+class FilterChipsResponsable extends StatefulWidget {
   @override
-  _FiltersState createState() => _FiltersState();
+  _FilterChipsResponsableState createState() => _FilterChipsResponsableState();
 }
 
-class _FiltersState extends State<Filters> {
+class _FilterChipsResponsableState extends State<FilterChipsResponsable> {
   ListController controllerList;
   @override
-  void initState() {
-    controllerList = Provider.of<ListController>(context, listen: false);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            reservationFilterButton(context),
-            Container(width: 8),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget reservationFilterButton(context) {
+    controllerList = Provider.of<ListController>(context, listen: false);
     return ChipsFilter(
-      textDefault: controllerList.selectedFilterStatus,
+      textDefault: controllerList.selectedResponsable,
       width: 150,
       onClick: _statusFilter,
     );
@@ -54,24 +33,26 @@ class _FiltersState extends State<Filters> {
               Container(
                   height: 400,
                   child: ListView.builder(
-                      itemCount: controllerList.status.length + 1,
+                      itemCount: controllerList.responsables.length + 1,
                       itemBuilder: (ctx, index) {
-                        return index == controllerList.status.length
+                        return index == controllerList.responsables.length
                             ? ListTile(
                                 leading: new Icon(Icons.not_interested),
                                 title: new Text(S.of(context).TODAS),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  controllerList.filterStatusCleanFilter();
+                                  controllerList.filterResponsableCleanFilter();
                                 },
                               )
                             : ListTile(
-                                leading: new Icon(Icons.label_important),
-                                title: new Text(controllerList.status[index]),
+                                leading: new Icon(Icons.person),
+                                title: new Text(controllerList
+                                    .responsables[index]
+                                    .toUpperCase()),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  controllerList.filterStatusActions(
-                                      controllerList.status[index]);
+                                  controllerList.filterResponsableActions(
+                                      controllerList.responsables[index]);
                                 },
                               );
                       })),

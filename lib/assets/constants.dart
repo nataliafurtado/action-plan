@@ -5,9 +5,11 @@ class Constants {
   static final cancelada = 'CANCELADA';
   static final completa = 'COMPLETA';
 
-  static final filtro = 'filtro';
+  static final filtroStatus = 'filtroStatus';
+  static final filtroResponsable = 'filtroResponsable';
 
   static final edit = 'edit';
   static final save = 'save';
   static final config = 'config';
+  static final delete = 'delete';
 }

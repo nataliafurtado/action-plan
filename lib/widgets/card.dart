@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../assets/style.dart';
@@ -23,6 +24,9 @@ class CardAction extends StatelessWidget {
       onTap: () {
         controllerList.goToEditActionEventPage(index);
       },
+      onLongPress: () {
+        controllerList.changeShowResponsableInCard();
+      },
       child: Container(
         margin: EdgeInsets.only(top: 15, left: 15, right: 15),
         // padding: EdgeInsets.all(15),
@@ -32,7 +36,7 @@ class CardAction extends StatelessWidget {
           children: [
             dataCategoria(),
             ActionStatus(action.status),
-            oque(),
+            oque(controllerList),
             como(),
             Container(height: 10),
           ],
@@ -54,7 +58,7 @@ class CardAction extends StatelessWidget {
     );
   }
 
-  Widget oque() {
+  Widget oque(ListController controllerList) {
     return Container(
       padding: EdgeInsets.all(10),
       child: Row(
@@ -64,7 +68,11 @@ class CardAction extends StatelessWidget {
             action.oQue,
             style: Style.bold,
           ),
-          // Text(action.quem.toUpperCase()),
+          Observer(builder: (_) {
+            return controllerList.isToShowResponsable
+                ? Text(action.quem.toUpperCase())
+                : Container();
+          }),
         ],
       ),
     );

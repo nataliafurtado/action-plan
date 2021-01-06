@@ -484,6 +484,38 @@ class S {
       args: [],
     );
   }
+
+  /// `Deseja excluir essa ação ?`
+  String get DESEJA_EXCLUIR {
+    return Intl.message(
+      'Deseja excluir essa ação ?',
+      name: 'DESEJA_EXCLUIR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Excluir`
+  String get EXCLUIR {
+    return Intl.message(
+      'Excluir',
+      name: 'EXCLUIR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelar`
+  String get CANCELAR {
+    return Intl.message(
+      'Cancelar',
+      name: 'CANCELAR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'ESTA_ACAO_NAO:' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

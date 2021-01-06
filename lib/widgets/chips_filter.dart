@@ -30,12 +30,17 @@ class _ChipsFilterState extends State<ChipsFilter> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              widget.textSelected ?? widget.textDefault,
-              style: TextStyle(
-                color: Style.primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
+            Container(
+              width: (widget.width ?? 120) - 42,
+              child: Text(
+                widget.textSelected ?? widget.textDefault,
+                maxLines: 1,
+                style: TextStyle(
+                  color: Style.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Icon(

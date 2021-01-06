@@ -32,6 +32,7 @@ dependencies:
   shared_preferences: ^0.5.12+2
   flutter_email_sender: ^4.0.0
   flutter_launcher_icons: ^0.8.1
+  flutter_slidable: ^0.5.7
   
 
   # The following adds the Cupertino Icons font to your application.

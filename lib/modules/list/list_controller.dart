@@ -2,6 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pa/generated/l10n.dart';
+import 'package:pa/modules/list/filter/filter_responsable.dart';
+import 'package:pa/modules/list/filter/filter_status.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../assets/constants.dart';
@@ -40,9 +43,11 @@ abstract class ListControllerBase with Store, ChangeNotifier {
   String selectedStatus = 'EM PROGRESSO';
 
   bool isToSave;
+  @observable
+  bool isToShowResponsable = false;
 
   @observable
-  String selectedFilterStatus = 'SEM FILTRO';
+  String selectedFilterStatus = "";
 
   TextEditingController controllerCategoria = TextEditingController();
   TextEditingController controllerOque = TextEditingController();
@@ -57,22 +62,38 @@ abstract class ListControllerBase with Store, ChangeNotifier {
   @action
   loadData() async {
     showCustomDialog(DialogCircularProgressIndicator());
+    selectedFilterStatus = S.of(context).SATUS.toUpperCase();
+    selectedResponsable = S.of(context).QUEM.toUpperCase();
     List<ActionEvent> actionList = await _listRepository.loadActionEvents();
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     actionsNotFiltered = actionList;
-    filterResponsableColumnValues(actionList);
-    if (prefs.containsKey(Constants.filtro)) {
-      filterStatusActions(prefs.getString(Constants.filtro));
-      selectedFilterStatus = prefs.getString(Constants.filtro);
-    } else {
-      actions = actionList;
-    }
+    separetaResponsableValues(actionList);
+    apllySavedFIlters(actionList);
     Navigator.pop(context);
   }
 
   @action
-  filterResponsableColumnValues(List<ActionEvent> list) {
+  apllySavedFIlters(actionList) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(Constants.filtroStatus) &&
+        prefs.containsKey(Constants.filtroResponsable)) {
+      selectedFilterStatus = prefs.getString(Constants.filtroStatus);
+      selectedResponsable =
+          prefs.getString(Constants.filtroResponsable).toUpperCase();
+      filter();
+    } else if (prefs.containsKey(Constants.filtroStatus)) {
+      selectedFilterStatus = prefs.getString(Constants.filtroStatus);
+      filter();
+    } else if (prefs.containsKey(Constants.filtroResponsable)) {
+      selectedResponsable =
+          prefs.getString(Constants.filtroResponsable).toUpperCase();
+      filter();
+    } else {
+      actions = actionList;
+    }
+  }
+
+  @action
+  separetaResponsableValues(List<ActionEvent> list) {
     List<String> responsablesList = [];
     for (var i = 0; i < list.length; i++) {
       responsablesList.add(list[i].quem);
@@ -85,41 +106,67 @@ abstract class ListControllerBase with Store, ChangeNotifier {
     log(responsables.toString());
   }
 
-  saveActionEvent() async {
-    showCustomDialog(DialogCircularProgressIndicator());
-    await _listRepository.doPost(loadActionEventObject());
-    await Future.delayed(Duration(seconds: 1));
-    Navigator.popAndPushNamed(context, '/list-page');
+  // FILTERS
+  @action
+  filter() {
+    if (isFilterStatusAndFilterResponsableSelected()) {
+      List<ActionEvent> actionList = [];
+      actionList = FilterStatus.fiter(actionsNotFiltered, selectedFilterStatus);
+      actions = FilterResponsable.fiter(actionList, selectedResponsable);
+    } else if (isFilterStatusSelected()) {
+      actions = FilterStatus.fiter(actionsNotFiltered, selectedFilterStatus);
+    } else if (isFilterResponsableSelected()) {
+      actions =
+          FilterResponsable.fiter(actionsNotFiltered, selectedResponsable);
+    } else {
+      actions = actionsNotFiltered;
+    }
   }
+
+  bool isFilterStatusAndFilterResponsableSelected() =>
+      selectedFilterStatus != S.of(context).SATUS.toUpperCase() &&
+      selectedResponsable != S.of(context).QUEM.toUpperCase();
+  bool isFilterStatusSelected() =>
+      selectedFilterStatus != S.of(context).SATUS.toUpperCase();
+  bool isFilterResponsableSelected() =>
+      selectedResponsable != S.of(context).QUEM.toUpperCase();
 
   @action
   filterStatusActions(String statusPassed) {
-    saveFilter(statusPassed);
-    List<ActionEvent> actionsList = [];
-    for (var i = 0; i < actionsNotFiltered.length; i++) {
-      if (actionsNotFiltered[i].status == statusPassed) {
-        actionsList.add(actionsNotFiltered[i]);
-      }
-    }
+    saveFilter(statusPassed, Constants.filtroStatus);
     selectedFilterStatus = statusPassed;
-    actions = actionsList;
+    filter();
+  }
+
+  @action
+  filterResponsableActions(String responsablePassed) {
+    saveFilter(responsablePassed, Constants.filtroResponsable);
+    selectedResponsable = responsablePassed.toUpperCase();
+    filter();
   }
 
   @action
   filterStatusCleanFilter() {
-    actions = actionsNotFiltered;
-    selectedFilterStatus = "SEM FILTRO";
-    deleteFilter();
+    deleteFilter(Constants.filtroStatus);
+    selectedFilterStatus = S.of(context).SATUS.toUpperCase();
+    filter();
   }
 
-  saveFilter(String statusPassed) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(Constants.filtro, statusPassed);
+  @action
+  filterResponsableCleanFilter() {
+    deleteFilter(Constants.filtroResponsable);
+    selectedResponsable = S.of(context).QUEM.toUpperCase();
+    filter();
   }
 
-  deleteFilter() async {
+  saveFilter(String filterPassed, String filterType) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove(Constants.filtro);
+    prefs.setString(filterType, filterPassed);
+  }
+
+  deleteFilter(String filterType) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(filterType);
   }
 
   goToEditActionEventPage(int index) async {
@@ -133,6 +180,13 @@ abstract class ListControllerBase with Store, ChangeNotifier {
     selectedStatus = "EM PROGRESSO";
     isToSave = true;
     selectedResponsable = "";
+    controllerCategoria.text = "";
+    controllerOque.text = "";
+    controllerComo.text = "";
+    selectedResponsable = "";
+    controllerFeedBack.text = "";
+    controllerObs.text = "";
+    prazo = "";
     Navigator.pushNamed(context, '/action-event-page', arguments: this);
   }
 
@@ -149,6 +203,13 @@ abstract class ListControllerBase with Store, ChangeNotifier {
     selectedStatus = actions[index].status;
   }
 
+  saveActionEvent() async {
+    showCustomDialog(DialogCircularProgressIndicator());
+    await _listRepository.doPost(loadActionEventObject());
+    await Future.delayed(Duration(seconds: 1));
+    Navigator.popAndPushNamed(context, '/list-page');
+  }
+
   ActionEvent loadActionEventObject() {
     if (isToSave) {
       return ActionEvent(
@@ -162,7 +223,7 @@ abstract class ListControllerBase with Store, ChangeNotifier {
         feedBack: controllerFeedBack.text,
         obs: controllerObs.text,
         rowToEdit: "",
-        action: "save",
+        action: Constants.save,
       );
     } else {
       return ActionEvent(
@@ -176,8 +237,23 @@ abstract class ListControllerBase with Store, ChangeNotifier {
         feedBack: controllerFeedBack.text,
         obs: controllerObs.text,
         rowToEdit: rowToEdit,
-        action: "edit",
+        action: Constants.edit,
       );
     }
+  }
+
+  deleteactionEvent(int index) async {
+    showCustomDialog(DialogCircularProgressIndicator());
+    await _listRepository.doPost(ActionEvent(
+      rowToEdit: actions[index].rowToEdit,
+      action: Constants.delete,
+    ));
+    Navigator.pop(context);
+    loadData();
+  }
+
+  @action
+  changeShowResponsableInCard() {
+    isToShowResponsable = !isToShowResponsable;
   }
 }

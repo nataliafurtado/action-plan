@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "CANCELAR" : MessageLookupByLibrary.simpleMessage("Cancelar"),
     "CATEGORIA" : MessageLookupByLibrary.simpleMessage("Categoria"),
     "CINCO" : MessageLookupByLibrary.simpleMessage("5. Em seguida pressione em - Nova implantação"),
     "COLE_AQUI_A_URL" : MessageLookupByLibrary.simpleMessage("Cole aqui a URL copiada "),
@@ -29,9 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "COPIAR" : MessageLookupByLibrary.simpleMessage("COPIAR"),
     "COPIAR_SCRIPT" : MessageLookupByLibrary.simpleMessage("Copiar script"),
     "CRIAR_UMA_PLANILHA" : MessageLookupByLibrary.simpleMessage(" - Criar uma planilha vazia no google drive"),
+    "DESEJA_EXCLUIR" : MessageLookupByLibrary.simpleMessage("Deseja excluir essa ação ?"),
     "DEZ" : MessageLookupByLibrary.simpleMessage("10. Em seguida pressione em - Permitir"),
     "DOIS" : MessageLookupByLibrary.simpleMessage("2. Ir na parte de <> Editor de Script"),
     "DOZE" : MessageLookupByLibrary.simpleMessage("12. Cole a URL no campo abaixo"),
+    "EXCLUIR" : MessageLookupByLibrary.simpleMessage("Excluir"),
     "E_ESTA_PERMITINDO" : MessageLookupByLibrary.simpleMessage("** E está permitindo que seu recém-criado app acesse sua planilha"),
     "E_PRECISO_UMA" : MessageLookupByLibrary.simpleMessage(" - É preciso uma conta no google"),
     "FEED_BACK" : MessageLookupByLibrary.simpleMessage("Feeb Back"),

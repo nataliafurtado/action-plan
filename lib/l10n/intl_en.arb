@@ -44,5 +44,9 @@
     "COPIAR": "COPIAR",
     "TODAS": "Todas",
     "PLANO_DE_ACAO": "Plano de ação",
-    "QUEM": "Quem ?"
+    "QUEM": "Quem ?",
+    "DESEJA_EXCLUIR": "Deseja excluir essa ação ?",
+    "EXCLUIR": "Excluir",
+    "CANCELAR": "Cancelar",
+    "ESTA_ACAO_NAO:": "*Esta ação não pode ser desfeita "
 }

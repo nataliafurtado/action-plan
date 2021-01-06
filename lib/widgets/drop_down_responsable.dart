@@ -17,20 +17,6 @@ class _DropDownResponsableState extends State<DropDownResponsable> {
         Provider.of<ListController>(context, listen: false);
     return Container(
       height: 60,
-
-      // color: Colors.indigo,
-      // alignment: Alignment.center,
-      // decoration: BoxDecoration(
-      //     // color: Style.primaryColor.withOpacity(0.8),
-      //     // borderRadius: BorderRadius.all(Radius.circular(20)),
-      //     // boxShadow: [
-      //     //   BoxShadow(
-      //     //     color: Colors.grey.shade400,
-      //     //     offset: Offset(0.0, 1.0),
-      //     //     blurRadius: 1.0,
-      //     //   ),
-      //     // ],
-      //     ),
       child: InputDecorator(
         decoration: Style.inputDecoration(),
         child: DropdownButton<String>(
@@ -38,12 +24,10 @@ class _DropDownResponsableState extends State<DropDownResponsable> {
               return new DropdownMenuItem<String>(
                 value: val,
                 child: Container(
-                    // color: Colors.red,
-                    // height: 10,
                     width: flexWidthSpacing(context, 1) - 100,
                     alignment: Alignment.center,
                     child: Text(
-                      val,
+                      val.toUpperCase(),
                       style: Style.bold,
                     )),
               );
