@@ -20,7 +20,7 @@ class _ChipsFilterState extends State<ChipsFilter> {
         widget.onClick(context);
       },
       child: Container(
-        width: widget.width ?? 120,
+        // width: widget.width ?? 120,
         padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             border: Border.all(
@@ -31,7 +31,7 @@ class _ChipsFilterState extends State<ChipsFilter> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: (widget.width ?? 120) - 42,
+              margin: EdgeInsets.only(right: 10),
               child: Text(
                 widget.textSelected ?? widget.textDefault,
                 maxLines: 1,

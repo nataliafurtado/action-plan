@@ -36,16 +36,16 @@ class _ListPageState extends State<ListPage> {
               Container(height: 20),
               //
               Container(
-                height: 40,
+                height: 20,
                 alignment: Alignment.bottomRight,
                 child: Container(
                   width: 60,
                   padding: EdgeInsets.only(right: 10),
                   alignment: Alignment.bottomRight,
-                  child: Icon(
-                    Icons.settings,
-                    color: Style.primaryColor,
-                  ),
+                  // child: Icon(
+                  //   Icons.settings,
+                  //   color: Style.primaryColor,
+                  // ),
                 ),
               ),
               //
